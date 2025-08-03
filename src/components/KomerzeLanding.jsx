@@ -215,9 +215,9 @@ export default function KomerzeLanding() {
       <section className="py-20 bg-gray-50">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Single Featured Testimonial */}
-          <div className="bg-white rounded-3xl p-12 shadow-xl relative overflow-hidden">
+          <div className=" p-12 relative overflow-hidden">
             {/* Quote Icon */}
-            <div className="absolute top-8 left-8 text-6xl text-indigo-100 font-serif">
+            <div className="absolute top-2 left-8 text-8xl text-indigo-700 font-serif">
               "
             </div>
 
@@ -226,10 +226,10 @@ export default function KomerzeLanding() {
               {/* Left Column - Testimonial Content (70%) */}
               <div className="md:col-span-7 flex flex-col justify-center">
                 {/* Testimonial Text */}
-                <blockquote className="text-xl md:text-2xl text-gray-700 mb-8 leading-relaxed font-medium italic">
-                  "Komerze transformó completamente nuestro proceso de compras.
-                  Ahora podemos gestionar pedidos de múltiples proveedores en
-                  una sola plataforma."
+                <blockquote className="text-xl md:text-3xl text-slate-900 mb-8 font-bold">
+                  Con komerze logramos reducir el tiempo de conciliación de
+                  ventas por centros de costos de días a minutos. Sin errores y
+                  de forma automática.
                 </blockquote>
               </div>
 
@@ -237,27 +237,26 @@ export default function KomerzeLanding() {
               <div className="md:col-span-3 flex flex-col items-center lg:items-start">
                 {/* Company Logo */}
                 <div className="flex items-center mb-6">
-                  <div className="w-12 h-12 bg-gradient-to-r from-indigo-600 to-blue-600 rounded-lg flex items-center justify-center mr-4 shadow-md">
-                    <span className="text-white font-bold text-lg">T</span>
-                  </div>
-                  <span className="text-xl font-semibold text-gray-800">
-                    TechCorp
-                  </span>
+                  <img
+                    src="/images/las-hermosas-logo.png"
+                    alt="Company Logo"
+                    className="h-18"
+                  />
                 </div>
 
                 {/* Author Details */}
-                <div className="flex flex-col sm:flex-row items-center lg:items-start gap-6">
+                <div className="flex flex-col sm:flex-row items-center  lg:items-center gap-6 ">
                   {/* Avatar */}
-                  <div className="w-20 h-20 bg-gradient-to-r from-indigo-500 to-blue-500 rounded-full flex items-center justify-center text-white font-bold text-2xl shadow-lg">
-                    MC
+                  <div className="w-16 h-16 bg-gradient-to-r from-indigo-500 to-blue-500 rounded-full flex items-center justify-center text-white font-bold text-2xl shadow-lg">
+                    AG
                   </div>
 
                   {/* Author Info */}
                   <div className="text-center sm:text-left lg:text-left">
-                    <p className="text-xl font-semibold text-gray-900 mb-1">
-                      María Carmen López
+                    <p className="text-lg font-semibold text-gray-900 mb-1">
+                      Alejandro Gómez
                     </p>
-                    <p className="text-gray-600 mb-2">Directora de Compras</p>
+                    <p className="text-sm text-slate-600 mb-2">Sub Gerente</p>
                   </div>
                 </div>
               </div>
@@ -269,7 +268,7 @@ export default function KomerzeLanding() {
           </div>
 
           {/* Trust badges */}
-          <div className="mt-16 text-center">
+          {/* <div className="mt-16 text-center">
             <p className="text-sm text-gray-500 mb-8">
               Empresas que confían en Komerze
             </p>
@@ -290,7 +289,7 @@ export default function KomerzeLanding() {
                 ProBusiness
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
       </section>
 
@@ -313,18 +312,16 @@ export default function KomerzeLanding() {
                 <ShoppingCartIcon />
               </div>
               <h3 className="text-xl font-semibold text-gray-900 mb-4">
-                Gestión de Catálogo
+                In House e-commerce personalizado
               </h3>
-              <ul className="space-y-2 text-gray-600">
+              {/* <ul className="space-y-2 text-gray-600">
                 <li className="flex items-center">
                   <CheckIcon />
-                  <span className="ml-2">Catálogo unificado de productos</span>
+                  <span className="ml-2">Marketplace personalizado</span>
                 </li>
                 <li className="flex items-center">
                   <CheckIcon />
-                  <span className="ml-2">
-                    Compresión automática de imágenes
-                  </span>
+                  <span className="ml-2">Catálogos por proveedor</span>
                 </li>
                 <li className="flex items-center">
                   <CheckIcon />
@@ -338,7 +335,7 @@ export default function KomerzeLanding() {
                     Gestión de inventario en tiempo real
                   </span>
                 </li>
-              </ul>
+              </ul> */}
             </div>
 
             <div className="bg-white p-8 rounded-2xl shadow-lg card-hover">
@@ -346,9 +343,9 @@ export default function KomerzeLanding() {
                 <ClipboardIcon />
               </div>
               <h3 className="text-xl font-semibold text-gray-900 mb-4">
-                Sistema de Pedidos
+                Gestión de Pedidos a proveedores
               </h3>
-              <ul className="space-y-2 text-gray-600">
+              {/* <ul className="space-y-2 text-gray-600">
                 <li className="flex items-center">
                   <CheckIcon />
                   <span className="ml-2">
@@ -367,7 +364,7 @@ export default function KomerzeLanding() {
                   <CheckIcon />
                   <span className="ml-2">Generación automática de PDFs</span>
                 </li>
-              </ul>
+              </ul> */}
             </div>
 
             <div className="bg-white p-8 rounded-2xl shadow-lg card-hover">
@@ -375,9 +372,9 @@ export default function KomerzeLanding() {
                 <UsersIcon />
               </div>
               <h3 className="text-xl font-semibold text-gray-900 mb-4">
-                Gestión de Usuarios
+                Gestión de centros de costos
               </h3>
-              <ul className="space-y-2 text-gray-600">
+              {/* <ul className="space-y-2 text-gray-600">
                 <li className="flex items-center">
                   <CheckIcon />
                   <span className="ml-2">
@@ -398,112 +395,7 @@ export default function KomerzeLanding() {
                   <CheckIcon />
                   <span className="ml-2">Activación por email</span>
                 </li>
-              </ul>
-            </div>
-
-            <div className="bg-white p-8 rounded-2xl shadow-lg card-hover">
-              <div className="w-16 h-16 bg-indigo-100 rounded-full flex items-center justify-center mb-6">
-                <ChartIcon />
-              </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-4">
-                Panel de Control
-              </h3>
-              <ul className="space-y-2 text-gray-600">
-                <li className="flex items-center">
-                  <CheckIcon />
-                  <span className="ml-2">Dashboard interactivo</span>
-                </li>
-                <li className="flex items-center">
-                  <CheckIcon />
-                  <span className="ml-2">Métricas clave en tiempo real</span>
-                </li>
-                <li className="flex items-center">
-                  <CheckIcon />
-                  <span className="ml-2">Gestión de vendedores</span>
-                </li>
-                <li className="flex items-center">
-                  <CheckIcon />
-                  <span className="ml-2">Reportes avanzados</span>
-                </li>
-              </ul>
-            </div>
-
-            <div className="bg-white p-8 rounded-2xl shadow-lg card-hover">
-              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-6">
-                <svg
-                  className="w-12 h-12 text-green-600"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={1.5}
-                    d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"
-                  />
-                </svg>
-              </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-4">
-                Diseño Responsivo
-              </h3>
-              <ul className="space-y-2 text-gray-600">
-                <li className="flex items-center">
-                  <CheckIcon />
-                  <span className="ml-2">Mobile-first design</span>
-                </li>
-                <li className="flex items-center">
-                  <CheckIcon />
-                  <span className="ml-2">Componentes adaptativos</span>
-                </li>
-                <li className="flex items-center">
-                  <CheckIcon />
-                  <span className="ml-2">Navegación optimizada</span>
-                </li>
-                <li className="flex items-center">
-                  <CheckIcon />
-                  <span className="ml-2">Skeletons responsivos</span>
-                </li>
-              </ul>
-            </div>
-
-            <div className="bg-white p-8 rounded-2xl shadow-lg card-hover">
-              <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mb-6">
-                <svg
-                  className="w-12 h-12 text-red-600"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={1.5}
-                    d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
-                  />
-                </svg>
-              </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-4">
-                Seguridad Avanzada
-              </h3>
-              <ul className="space-y-2 text-gray-600">
-                <li className="flex items-center">
-                  <CheckIcon />
-                  <span className="ml-2">Row Level Security (RLS)</span>
-                </li>
-                <li className="flex items-center">
-                  <CheckIcon />
-                  <span className="ml-2">Autenticación JWT</span>
-                </li>
-                <li className="flex items-center">
-                  <CheckIcon />
-                  <span className="ml-2">Validación de formularios</span>
-                </li>
-                <li className="flex items-center">
-                  <CheckIcon />
-                  <span className="ml-2">Políticas basadas en roles</span>
-                </li>
-              </ul>
+              </ul> */}
             </div>
           </div>
         </div>
