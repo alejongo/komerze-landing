@@ -41,30 +41,21 @@ export default function StatsSection() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold mb-4">
-            Números que Hablan por Sí Solos
+            Números que recuperan tu tiempo
           </h2>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+          <p className="text-base text-slate-900 max-w-3xl mx-auto">
             Komerze está transformando la gestión de compras para empresas de
             todos los tamaños
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div className="text-center">
             <div className="text-4xl font-bold text-blue-400 mb-2">
-              <AnimatedCounter end={60} suffix="%" />
+              <AnimatedCounter end={70} suffix="%" />
             </div>
-            <p className="text-gray-300">
-              Reducción en tiempo de procesamiento
-            </p>
-          </div>
-
-          <div className="text-center">
-            <div className="text-4xl font-bold text-purple-400 mb-2">
-              <AnimatedCounter end={500} suffix="K+" />
-            </div>
-            <p className="text-gray-300">
-              Imágenes optimizadas automáticamente
+            <p className="text-slate-700">
+              Reducción de tiempo en gestión de compras
             </p>
           </div>
 
@@ -72,7 +63,7 @@ export default function StatsSection() {
             <div className="text-4xl font-bold text-cyan-400 mb-2">
               <AnimatedCounter end={99.9} suffix="%" />
             </div>
-            <p className="text-gray-300">Uptime garantizado</p>
+            <p className="text-slate-700">Uptime </p>
           </div>
 
           <div className="text-center">

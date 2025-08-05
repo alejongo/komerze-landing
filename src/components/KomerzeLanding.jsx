@@ -129,27 +129,16 @@ export default function KomerzeLanding() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-3 px-2">
             <KomerzeLogo />
-            <nav className="hidden md:flex space-x-8">
+            <nav className="hidden md:flex md:justify-end space-x-8">
               <a
-                href="#caracteristicas"
+                href="#features"
                 className="text-gray-600 hover:text-blue-600 transition-colors"
               >
                 Características
               </a>
+
               <a
-                href="#beneficios"
-                className="text-gray-600 hover:text-blue-600 transition-colors"
-              >
-                Beneficios
-              </a>
-              <a
-                href="#demo"
-                className="text-gray-600 hover:text-blue-600 transition-colors"
-              >
-                Demo
-              </a>
-              <a
-                href="#contacto"
+                href="https://app.youform.com/forms/sn2sh7ns"
                 className="text-gray-600 hover:text-blue-600 transition-colors"
               >
                 Contacto
@@ -196,10 +185,13 @@ export default function KomerzeLanding() {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16 animate-slide-up">
-              <button className="bg-gradient-to-r from-indigo-600 to-blue-600 inline-flex items-center gap-2 px-8 py-4 text-white font-semibold rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-xl shadow-lg">
+              <a
+                href="https://app.youform.com/forms/sn2sh7ns"
+                className="bg-gradient-to-r from-indigo-600 to-blue-600 inline-flex items-center gap-2 px-8 py-4 text-white font-semibold rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-xl shadow-lg"
+              >
                 Solicitar Demo
                 <ArrowRightIcon />
-              </button>
+              </a>
             </div>
 
             {/* Hero Image en la parte inferior */}
@@ -251,7 +243,11 @@ export default function KomerzeLanding() {
                 <div className="flex flex-col sm:flex-row items-center  lg:items-center gap-6 ">
                   {/* Avatar */}
                   <div className=" w-12 h-12 bg-gradient-to-r from-indigo-500 to-blue-500 rounded-full flex items-center justify-center text-white font-bold text-2xl shadow-lg">
-                    AG
+                    <img
+                      src="/images/alejandro_gomez_foto.jpg"
+                      alt="Alejandro Gómez"
+                      className="w-full h-full object-cover rounded-full"
+                    />
                   </div>
 
                   {/* Author Info */}
@@ -297,7 +293,7 @@ export default function KomerzeLanding() {
       </section>
 
       {/* Features Section */}
-      <section id="caracteristicas" className="py-20">
+      <section id="features" className="py-20">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
@@ -405,10 +401,10 @@ export default function KomerzeLanding() {
       </section>
 
       {/* Stats Section */}
-      <StatsSection />
+      {/* <StatsSection /> */}
 
       {/* Benefits Section */}
-      <section id="beneficios" className="py-20">
+      {/* <section id="beneficios" className="py-20">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div>
@@ -508,10 +504,10 @@ export default function KomerzeLanding() {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Pricing Section */}
-      <section className="py-20 bg-white">
+      <section id="pricing" className="py-20 bg-blue-50">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
@@ -537,9 +533,6 @@ export default function KomerzeLanding() {
                   <h3 className="text-2xl font-bold text-gray-900 mb-2">
                     Plan Estándar
                   </h3>
-                  <p className="text-sm text-gray-600">
-                    Ideal para empresas en crecimiento
-                  </p>
                 </div>
 
                 {/* Pricing */}
@@ -566,7 +559,7 @@ export default function KomerzeLanding() {
                 <div className="space-y-3 mb-8">
                   <div className="flex items-center">
                     <span className="text-slate-800">
-                      Para empresas que busquen eficiencia y autonomía en las
+                      Para empresas que buscan eficiencia y autonomía en las
                       compras por centros de costos.
                     </span>
                   </div>
@@ -598,17 +591,10 @@ export default function KomerzeLanding() {
                   <div className="text-left space-y-2">
                     {/* Base Price - Destacado */}
                     <div>
-                      <p className="text-xs text-indigo-600 mb-2 font-semibold uppercase tracking-wide">
-                        Precio Base
-                      </p>
-                      <div className="text-4xl font-black text-slate-900">
-                        $199,900/mes
-                      </div>
-                    </div>
-
-                    {/* Plus Symbol */}
-                    <div className="text-sm font-medium text-slate-900">
-                      + $1,200 por orden generada
+                      {/* CTA */}
+                      <button className="w-full bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-semibold py-4 rounded-lg hover:from-purple-700 hover:to-indigo-700 transition-all duration-300 hover:shadow-lg">
+                        Hablar con Ventas
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -622,11 +608,6 @@ export default function KomerzeLanding() {
                     </span>
                   </div>
                 </div>
-
-                {/* CTA */}
-                <button className="w-full bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-semibold py-4 rounded-lg hover:from-purple-700 hover:to-indigo-700 transition-all duration-300 hover:shadow-lg">
-                  Contactar Ventas
-                </button>
               </div>
             </div>
           </div>
@@ -698,9 +679,7 @@ export default function KomerzeLanding() {
                     />
                   </svg>
                 </div>
-                <h4 className="font-semibold text-gray-900 mb-2">
-                  Soporte 24/7
-                </h4>
+                <h4 className="font-semibold text-gray-900 mb-2">Soporte</h4>
                 <p className="text-gray-600 text-sm">
                   Asistencia técnica completa cuando la necesites
                 </p>
@@ -720,7 +699,7 @@ export default function KomerzeLanding() {
             <h2 className="text-4xl font-bold text-white mb-6">
               ¿Listo para Revolucionar tu Gestión de Compras?
             </h2>
-            <p className="text-xl text-blue-100 mb-8 max-w-3xl mx-auto">
+            <p className="text-base text-white mb-8 max-w-3xl mx-auto">
               Únete a las empresas que ya están transformando sus procesos con
               Komerze. Solicita una demo personalizada y descubre todo el
               potencial de nuestra plataforma.
@@ -728,14 +707,17 @@ export default function KomerzeLanding() {
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
               <a
-                href="#contacto"
+                href="https://app.youform.com/forms/sn2sh7ns"
                 className="bg-white text-blue-600 px-8 py-4 rounded-xl font-semibold hover:shadow-lg transition-all duration-300 hover:scale-105 no-underline inline-flex items-center justify-center"
               >
                 Solicitar Demo Gratuita
               </a>
-              <button className="border-2 border-white text-white px-8 py-4 rounded-xl font-semibold hover:bg-white hover:text-blue-600 transition-all duration-300">
+              <a
+                href="https://app.youform.com/forms/sn2sh7ns"
+                className="border-2 border-white text-white px-8 py-4 rounded-xl font-semibold hover:bg-white hover:text-blue-600 transition-all duration-300"
+              >
                 Contactar Ventas
-              </button>
+              </a>
             </div>
 
             <div
@@ -748,7 +730,7 @@ export default function KomerzeLanding() {
               <p className="text-blue-100 text-sm mb-4">
                 ⚠️ Fase Alpha - Acceso Limitado
               </p>
-              <p className="text-white text-lg">
+              <p className="text-white text-xs">
                 Komerze v0.9 está en desarrollo activo. Solicita acceso
                 early-bird para ser parte de la revolución B2B.
               </p>
@@ -757,23 +739,16 @@ export default function KomerzeLanding() {
         </div>
       </section>
 
-      {/* Contact Form */}
-      <ContactForm />
-
       {/* Footer */}
       <footer className="bg-gray-900 text-white py-16">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div>
               <div className="flex items-center space-x-2 mb-4">
-                <div className="w-10 h-10 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
-                  <span className="text-white font-bold text-xl">K</span>
-                </div>
                 <span className="text-2xl font-bold text-white">Komerze</span>
               </div>
-              <p className="text-gray-400">
-                Plataforma B2B moderna para la gestión automatizada de compras
-                empresariales.
+              <p className="text-sm text-gray-400">
+                Software para la gestión automatizada de compras empresariales.
               </p>
             </div>
 
@@ -781,12 +756,18 @@ export default function KomerzeLanding() {
               <h3 className="font-semibold mb-4">Producto</h3>
               <ul className="space-y-2 text-gray-400">
                 <li>
-                  <a href="#" className="hover:text-white transition-colors">
+                  <a
+                    href="#features"
+                    className="hover:text-white transition-colors"
+                  >
                     Características
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="hover:text-white transition-colors">
+                  <a
+                    href="#pricing"
+                    className="hover:text-white transition-colors"
+                  >
                     Precios
                   </a>
                 </li>
@@ -808,48 +789,7 @@ export default function KomerzeLanding() {
               <ul className="space-y-2 text-gray-400">
                 <li>
                   <a href="#" className="hover:text-white transition-colors">
-                    Acerca de
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-white transition-colors">
-                    Blog
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-white transition-colors">
-                    Carreras
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-white transition-colors">
                     Contacto
-                  </a>
-                </li>
-              </ul>
-            </div>
-
-            <div>
-              <h3 className="font-semibold mb-4">Soporte</h3>
-              <ul className="space-y-2 text-gray-400">
-                <li>
-                  <a href="#" className="hover:text-white transition-colors">
-                    Centro de Ayuda
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-white transition-colors">
-                    Guías
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-white transition-colors">
-                    API
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-white transition-colors">
-                    Status
                   </a>
                 </li>
               </ul>
@@ -860,26 +800,6 @@ export default function KomerzeLanding() {
             <p className="text-gray-400">
               © 2025 Komerze. Todos los derechos reservados.
             </p>
-            <div className="flex space-x-6 mt-4 sm:mt-0">
-              <a
-                href="#"
-                className="text-gray-400 hover:text-white transition-colors"
-              >
-                Privacidad
-              </a>
-              <a
-                href="#"
-                className="text-gray-400 hover:text-white transition-colors"
-              >
-                Términos
-              </a>
-              <a
-                href="#"
-                className="text-gray-400 hover:text-white transition-colors"
-              >
-                Cookies
-              </a>
-            </div>
           </div>
         </div>
       </footer>
