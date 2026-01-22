@@ -1,0 +1,28 @@
+@import "tailwindcss";
+
+@theme {
+  --color-navy: #0f172a;
+  --color-indigo: #6366f1;
+  --color-teal: #2dd4bf;
+  --color-slate-50: #f8fafc;
+  --color-surface: #ffffff;
+
+  --font-sans: 'Inter', system-ui, sans-serif;
+  
+  --shadow-soft: 0 10px 40px -10px rgba(0,0,0,0.08);
+  --shadow-glow: 0 0 20px rgba(99, 102, 241, 0.15);
+}
+
+@layer base {
+  body {
+    @apply bg-slate-50 text-slate-900 antialiased selection:bg-indigo-100 selection:text-indigo-900;
+  }
+}
+
+@utility glass-card {
+    @apply bg-white border border-white/40 shadow-soft backdrop-blur-xl;
+}
+
+@utility text-balance {
+    text-wrap: balance;
+}
