@@ -26,8 +26,8 @@ export const ui = {
       companies: "150+ Empresas felices",
     },
     problem: {
-      title: "El caos manual",
-      text: "Tu equipo no odia comprar. Odia la burocracia. Correos perdidos, PDFs infinitos y '¿quién aprueba esto?'",
+      title: "Comprar un insumo no debería ser una carrera de obstáculos",
+      text: "Elimina el laberinto de correos y PDFs. Si hay presupuesto, la compra fluye",
     },
     solution: {
       title: "La claridad Komerze",
@@ -73,8 +73,8 @@ export const ui = {
       companies: "150+ Empresas ativas",
     },
     problem: {
-      title: "O caos manual",
-      text: "Seu time não odeia comprar. Odeia a burocracia. E-mails perdidos, PDFs infinitos e 'quem aprova isso?'",
+      title: "Comprar no trabalho não deveria ser uma corrida de obstáculos.",
+      text: "Elimine o labirinto de e-mails e PDFs. Se há orçamento, a compra flui.",
     },
     solution: {
       title: "A clareza Komerze",
@@ -120,8 +120,8 @@ export const ui = {
       companies: "150+ Happy companies",
     },
     problem: {
-      title: "Manual Chaos",
-      text: "Your team doesn't hate buying. They hate red tape. Lost emails, endless PDFs, and the 'who approves this?' game.",
+      title: "Buying at work shouldn't be an obstacle course",
+      text: "Eliminate the maze of emails and PDFs. If there's a budget, the purchase flows.",
     },
     solution: {
       title: "Komerze Clarity",
