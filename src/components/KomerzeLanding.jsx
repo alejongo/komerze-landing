@@ -1,6 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
+import { useLanguage, translations } from "../i18n";
 
-/* ---- SVG icons ---- */
+/* ====================================================
+   SVG ICONS
+   ==================================================== */
 const IconArrow = () => (
   <svg className="k-btn-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
     <line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" />
@@ -47,148 +50,95 @@ const IconClose = () => (
   </svg>
 );
 
-const CAP_CARDS = [
-  {
-    num: "01",
-    icon: (
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <circle cx="12" cy="12" r="9" /><circle cx="12" cy="12" r="5" /><circle cx="12" cy="12" r="1.2" fill="currentColor" />
-      </svg>
-    ),
-    title: "Estrategia PLG",
-    body: "Mapeamos el viaje real del usuario — dónde se frustra, dónde abandona, dónde llega al valor sin ayuda — y definimos qué debe sentir el producto en cada paso.",
-  },
-  {
-    num: "02",
-    icon: <IconGrid />,
-    title: "Diseño de producto",
-    body: "Sistemas de diseño propios, pensados para cada rol que toca el producto — no una interfaz genérica que le sirve a nadie del todo.",
-  },
-  {
-    num: "03",
-    icon: (
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z" />
-      </svg>
-    ),
-    title: "Onboarding sin fricción",
-    body: "Rediseñamos el primer minuto del producto para que el usuario llegue al valor antes de tener que configurar, pedir permiso o leer un manual.",
-  },
-  {
-    num: "04",
-    icon: (
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M12 3l1.5 4.5L18 9l-4.5 1.5L12 15l-1.5-4.5L6 9l4.5-1.5L12 3z" /><path d="M19 14l.7 2.1L22 17l-2.1.7L19 20l-.7-2.1L16 17l2.1-.7L19 14z" />
-      </svg>
-    ),
-    title: "Activación y Aha Moment",
-    body: "Identificamos el momento exacto en que un usuario entiende el valor del producto, y diseñamos cada pantalla anterior para llevarlo ahí más rápido.",
-  },
-  {
-    num: "05",
-    icon: (
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <circle cx="6" cy="6" r="3" /><circle cx="18" cy="6" r="3" /><circle cx="12" cy="18" r="3" /><line x1="8.5" y1="7.5" x2="15.5" y2="16" /><line x1="15.5" y1="7.5" x2="8.5" y2="16" />
-      </svg>
-    ),
-    title: "Growth loops",
-    body: "Diseñamos los puntos donde el uso de un usuario invita al siguiente — invitaciones, referidos, valor compartido — para que el producto crezca sin depender solo de marketing.",
-  },
-  {
-    num: "06",
-    icon: (
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <polyline points="1 4 1 10 7 10" /><polyline points="23 20 23 14 17 14" /><path d="M3.5 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.65 4.36A9 9 0 0 0 20.5 15" />
-      </svg>
-    ),
-    title: "Iteración basada en datos",
-    body: "El diseño no termina en el lanzamiento. Medimos activación y retención reales, y ajustamos el producto contra el comportamiento, no contra la opinión.",
-  },
+/* ====================================================
+   PROCESS ICONS (language-independent)
+   ==================================================== */
+const PROCESS_ICONS = [
+  /* 01 — Diagnóstico: magnifying glass with plus */
+  <svg key="p1" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
+    <circle cx="11" cy="11" r="7" /><path d="M21 21l-4.35-4.35" /><line x1="11" y1="8" x2="11" y2="14" /><line x1="8" y1="11" x2="14" y2="11" />
+  </svg>,
+  /* 02 — Estrategia: bullseye */
+  <svg key="p2" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
+    <circle cx="12" cy="12" r="9" /><circle cx="12" cy="12" r="5" /><circle cx="12" cy="12" r="1.5" fill="currentColor" stroke="none" />
+  </svg>,
+  /* 03 — Diseño: compass/pen */
+  <svg key="p3" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M12 19l7-7 3 3-7 7-3-3z" /><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z" /><path d="M2 2l7.586 7.586" /><circle cx="11" cy="11" r="2" />
+  </svg>,
+  /* 04 — Medición: pulse / EKG */
+  <svg key="p4" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
+    <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+  </svg>,
 ];
 
-const PROCESS_STEPS = [
-  {
-    num: "01",
-    active: true,
-    title: "Diagnóstico de fricción",
-    body: "Mapeamos el viaje real del usuario y encontramos dónde se pierde la activación — antes de proponer ningún rediseño.",
-    icon: (
-      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
-        <circle cx="11" cy="11" r="7" />
-        <path d="M21 21l-4.35-4.35" />
-        <line x1="11" y1="8" x2="11" y2="14" />
-        <line x1="8" y1="11" x2="14" y2="11" />
-      </svg>
-    ),
-  },
-  {
-    num: "02",
-    active: false,
-    title: "Estrategia de activación",
-    body: "Definimos el Aha Moment, las métricas que lo prueban y el flujo más corto posible para llegar a él.",
-    icon: (
-      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
-        <circle cx="12" cy="12" r="9" />
-        <circle cx="12" cy="12" r="5" />
-        <circle cx="12" cy="12" r="1.5" fill="currentColor" stroke="none" />
-      </svg>
-    ),
-  },
-  {
-    num: "03",
-    active: false,
-    title: "Diseño del sistema",
-    body: "Diseñamos en iteraciones visibles — prototipos que se prueban con usuarios reales, no una entrega a ciegas.",
-    icon: (
-      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M12 19l7-7 3 3-7 7-3-3z" />
-        <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z" />
-        <path d="M2 2l7.586 7.586" />
-        <circle cx="11" cy="11" r="2" />
-      </svg>
-    ),
-  },
-  {
-    num: "04",
-    active: false,
-    title: "Medición y ajuste",
-    body: "Lanzamos, medimos activación y retención reales, y seguimos diseñando sobre lo que el comportamiento nos enseña.",
-    icon: (
-      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
-        <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
-      </svg>
-    ),
-  },
+/* CAP CARD ICONS (language-independent) */
+const CAP_ICONS = [
+  <svg key="c1" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <circle cx="12" cy="12" r="9" /><circle cx="12" cy="12" r="5" /><circle cx="12" cy="12" r="1.2" fill="currentColor" />
+  </svg>,
+  <IconGrid key="c2" />,
+  <svg key="c3" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z" />
+  </svg>,
+  <svg key="c4" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M12 3l1.5 4.5L18 9l-4.5 1.5L12 15l-1.5-4.5L6 9l4.5-1.5L12 3z" /><path d="M19 14l.7 2.1L22 17l-2.1.7L19 20l-.7-2.1L16 17l2.1-.7L19 14z" />
+  </svg>,
+  <svg key="c5" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <circle cx="6" cy="6" r="3" /><circle cx="18" cy="6" r="3" /><circle cx="12" cy="18" r="3" /><line x1="8.5" y1="7.5" x2="15.5" y2="16" /><line x1="15.5" y1="7.5" x2="8.5" y2="16" />
+  </svg>,
+  <svg key="c6" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <polyline points="1 4 1 10 7 10" /><polyline points="23 20 23 14 17 14" /><path d="M3.5 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.65 4.36A9 9 0 0 0 20.5 15" />
+  </svg>,
 ];
 
-/* ---- Counter hook for case stats ---- */
+/* ====================================================
+   LANGUAGE TOGGLE
+   ==================================================== */
+function LangToggle() {
+  const { lang, setLang } = useLanguage();
+  return (
+    <div className="k-lang-toggle" role="group" aria-label="Idioma / Language">
+      <button
+        className={`k-lang-btn${lang === "es" ? " is-active" : ""}`}
+        onClick={() => setLang("es")}
+        aria-pressed={lang === "es"}
+      >
+        ES
+      </button>
+      <button
+        className={`k-lang-btn${lang === "en" ? " is-active" : ""}`}
+        onClick={() => setLang("en")}
+        aria-pressed={lang === "en"}
+      >
+        EN
+      </button>
+    </div>
+  );
+}
+
+/* ====================================================
+   COUNT-UP HOOK
+   ==================================================== */
 function useCountUp(target, active) {
   const [count, setCount] = useState(0);
   const ran = useRef(false);
-
   useEffect(() => {
     if (!active || ran.current || !target) return;
     ran.current = true;
     let current = 0;
-    const steps = 28;
-    const increment = target / steps;
+    const inc = target / 28;
     const id = setInterval(() => {
-      current += increment;
-      if (current >= target) {
-        setCount(target);
-        clearInterval(id);
-      } else {
-        setCount(Math.floor(current));
-      }
+      current += inc;
+      if (current >= target) { setCount(target); clearInterval(id); }
+      else setCount(Math.floor(current));
     }, 40);
     return () => clearInterval(id);
   }, [active, target]);
-
   return count;
 }
 
-/* ---- Stat card with count-up ---- */
-function StatCard({ val, label, className, countTo, panelVisible }) {
+function StatCard({ val, label, className = "", countTo, panelVisible }) {
   const count = useCountUp(countTo, panelVisible);
   return (
     <div className={`k-case-stat ${className}`}>
@@ -202,40 +152,37 @@ function StatCard({ val, label, className, countTo, panelVisible }) {
    MAIN COMPONENT
    ==================================================== */
 export default function KomerzeLanding() {
-  const [scrolled, setScrolled] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
+  const { lang } = useLanguage();
+  const t = translations[lang];
+
+  const [scrolled, setScrolled]       = useState(false);
+  const [menuOpen, setMenuOpen]       = useState(false);
   const [panelVisible, setPanelVisible] = useState(false);
   const panelRef = useRef(null);
 
-  /* Nav scroll state */
+  /* Nav scroll */
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 10);
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    const fn = () => setScrolled(window.scrollY > 10);
+    window.addEventListener("scroll", fn, { passive: true });
+    return () => window.removeEventListener("scroll", fn);
   }, []);
 
-  /* Scroll reveal — IntersectionObserver */
+  /* Scroll reveal */
   useEffect(() => {
-    const selectors = ".reveal, .reveal-group, .k-compare, .k-case-panel, .k-process-rail";
-    const targets = document.querySelectorAll(selectors);
-    const obs = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("is-in");
-            if (entry.target.classList.contains("k-case-panel")) {
-              setPanelVisible(true);
-            }
-          }
-        });
-      },
-      { threshold: 0.12 }
-    );
-    targets.forEach((el) => obs.observe(el));
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) {
+          e.target.classList.add("is-in");
+          if (e.target.classList.contains("k-case-panel")) setPanelVisible(true);
+        }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll(".reveal, .reveal-group, .k-compare, .k-case-panel, .k-process-rail")
+      .forEach((el) => obs.observe(el));
     return () => obs.disconnect();
   }, []);
 
-  /* Lock body scroll when mobile menu open */
+  /* Body scroll lock */
   useEffect(() => {
     document.body.style.overflow = menuOpen ? "hidden" : "";
     return () => { document.body.style.overflow = ""; };
@@ -246,28 +193,23 @@ export default function KomerzeLanding() {
       {/* ====== NAV ====== */}
       <header className={`k-nav${scrolled ? " is-scrolled" : ""}`}>
         <div className="k-wrap k-nav-inner">
-          {/* Logo */}
           <a href="/" className="k-nav-logo">
-            <img src="/images/Komerze-logo.svg" style={{ height: 30 }} alt="Komerze" />
+            <img src="/images/Komerze-logo.png" alt="Komerze" />
           </a>
 
-          {/* Desktop links */}
           <nav className="k-nav-links">
-            <a href="#que-es">El principio</a>
-            <a href="#capacidades">Capacidades</a>
+            <a href="#que-es">{t.nav.principle}</a>
+            <a href="#capacidades">{t.nav.capabilities}</a>
             <a href="#kardal">kardal.</a>
-            <a href="#proceso">Proceso</a>
+            <a href="#proceso">{t.nav.process}</a>
           </nav>
 
           <div className="k-nav-cta">
-            <a href="#contacto" className="k-btn-nav">
-              Conversemos
+            <LangToggle />
+            <a href="https://calendly.com/alejo-kardal/30min" className="k-btn-nav">
+              {t.nav.cta}
             </a>
-            <button
-              className="k-nav-toggle"
-              onClick={() => setMenuOpen(true)}
-              aria-label="Abrir menú"
-            >
+            <button className="k-nav-toggle" onClick={() => setMenuOpen(true)} aria-label={t.nav.ariaOpen}>
               <IconHamburger />
             </button>
           </div>
@@ -280,20 +222,21 @@ export default function KomerzeLanding() {
           <div className="k-mobile-overlay" onClick={() => setMenuOpen(false)} />
           <div className="k-mobile-panel">
             <div className="k-mobile-header">
-              <img src="/images/Komerze-logo.svg" alt="Komerze" style={{ height: 20 }} />
-              <button className="k-mobile-close" onClick={() => setMenuOpen(false)} aria-label="Cerrar menú">
+              <img src="/images/Komerze-logo.png" alt="Komerze" style={{ height: 20 }} />
+              <button className="k-mobile-close" onClick={() => setMenuOpen(false)} aria-label={t.nav.ariaClose}>
                 <IconClose />
               </button>
             </div>
             <nav className="k-mobile-nav">
-              <a href="#que-es" onClick={() => setMenuOpen(false)}>El principio</a>
-              <a href="#capacidades" onClick={() => setMenuOpen(false)}>Capacidades</a>
-              <a href="#kardal" onClick={() => setMenuOpen(false)}>kardal.</a>
-              <a href="#proceso" onClick={() => setMenuOpen(false)}>Proceso</a>
+              <a href="#que-es"     onClick={() => setMenuOpen(false)}>{t.nav.principle}</a>
+              <a href="#capacidades" onClick={() => setMenuOpen(false)}>{t.nav.capabilities}</a>
+              <a href="#kardal"     onClick={() => setMenuOpen(false)}>kardal.</a>
+              <a href="#proceso"    onClick={() => setMenuOpen(false)}>{t.nav.process}</a>
             </nav>
             <div className="k-mobile-cta">
-              <a href="#contacto" className="k-btn-primary" style={{ width: "100%", justifyContent: "center" }} onClick={() => setMenuOpen(false)}>
-                Conversemos <IconArrow />
+              <div style={{ marginBottom: 12 }}><LangToggle /></div>
+              <a href="https://calendly.com/alejo-kardal/30min" className="k-btn-primary" style={{ width: "100%", justifyContent: "center" }} onClick={() => setMenuOpen(false)}>
+                {t.nav.cta} <IconArrow />
               </a>
             </div>
           </div>
@@ -303,68 +246,51 @@ export default function KomerzeLanding() {
       {/* ====== HERO ====== */}
       <section className="k-hero">
         <div className="k-wrap k-hero-grid">
-          {/* Left */}
           <div>
-            <span className="k-eyebrow">Komerze Company LLC</span>
+            <span className="k-eyebrow">{t.hero.eyebrow}</span>
             <h1 className="k-hero-title">
-              <span className="k-htl"><span>Construimos compañías</span></span>
-              <span className="k-htl"><span>de producto <em>para LATAM</em>.</span></span>
+              <span className="k-htl"><span>{t.hero.line1}</span></span>
+              <span className="k-htl"><span>{t.hero.line2} <em>{t.hero.line2em}</em>.</span></span>
             </h1>
-            <p className="k-hero-sub">
-              Komerze es una <span className="font-semibold italic">Product Led Company builder:</span> diseñamos, construimos y operamos compañías de producto propias. kardal. es la primera — una plataforma de Supplier Intelligence para comercio B2B en Latinoamérica.
-            </p>
+            <p className="k-hero-sub">{t.hero.sub}</p>
             <div className="k-hero-actions">
               <a href="https://calendly.com/alejo-kardal/30min" className="k-btn-primary">
-                Conversemos <IconArrow />
+                {t.hero.ctaMain} <IconArrow />
               </a>
               <a href="#kardal" className="k-btn-secondary">
                 <span className="k-btn-icon"><IconGrid /></span>
-                Ver kardal., nuestra primera compañía
+                {t.hero.ctaSecondary}
               </a>
             </div>
             <div className="k-hero-proof">
-              <span className="k-hero-proof-label">Construido y operado por Komerze</span>
-              <span className="k-hero-proof-mark">
-                kardal<span className="k-green">.</span>
-              </span>
+              <span className="k-hero-proof-label">{t.hero.proofLabel}</span>
+              <span className="k-hero-proof-mark">kardal<span className="k-green">.</span></span>
             </div>
           </div>
 
-          {/* Right — Spec card */}
+          {/* Spec card */}
           <div className="k-hero-visual">
             <div className="k-float-chip chip-1">
               <span className="k-chip-dot" />
-              Operando desde 2026
+              {t.spec.chip}
             </div>
             <div className="k-spec-card">
               <div className="k-spec-head">
-                <span className="k-spec-head-title">Ficha de Compañía · 001</span>
-                <div className="k-spec-dots">
-                  <span /><span /><span />
-                </div>
+                <span className="k-spec-head-title">{t.spec.cardTitle}</span>
+                <div className="k-spec-dots"><span /><span /><span /></div>
               </div>
               <div className="k-spec-body">
-                <div className="k-spec-row">
-                  <span className="k-spec-row-label">Modelo</span>
-                  <span className="k-spec-row-value">Compañía de producto<br />propia, operada por Komerze</span>
-                </div>
-                <div className="k-spec-row">
-                  <span className="k-spec-row-label">Categoría</span>
-                  <span className="k-spec-row-value">Supplier Intelligence para comercio B2B</span>
-                </div>
-                <div className="k-spec-row">
-                  <span className="k-spec-row-label">Mercado</span>
-                  <span className="k-spec-row-value">Latinoamérica, con foco inicial en Colombia</span>
-                </div>
-                <div className="k-spec-row">
-                  <span className="k-spec-row-label">Estado</span>
-                  <span className="k-spec-row-value">Producto en operación,<br />creciendo sin depender de ventas</span>
-                </div>
+                {t.spec.rows.map((row) => (
+                  <div className="k-spec-row" key={row.label}>
+                    <span className="k-spec-row-label">{row.label}</span>
+                    <span className="k-spec-row-value">{row.value}</span>
+                  </div>
+                ))}
               </div>
               <div className="k-spec-foot">
                 <span className="k-pulse" />
                 <span className="k-spec-foot-text">
-                  Primera compañía: <strong>kardal.</strong> — kardal.so
+                  {t.spec.footText} <strong>kardal.</strong> — kardal.so
                 </span>
               </div>
             </div>
@@ -376,45 +302,29 @@ export default function KomerzeLanding() {
       <section className="k-strip" id="que-es">
         <div className="k-wrap">
           <div className="k-strip-head reveal">
-            <span className="k-strip-kicker">El principio</span>
-            <h2>Cada compañía que construimos parte del mismo principio: el producto es el vendedor.</h2>
+            <span className="k-strip-kicker">{t.strip.kicker}</span>
+            <h2>{t.strip.heading}</h2>
           </div>
           <div className="k-compare">
             <div className="k-compare-col">
               <span className="k-compare-label">
                 <span style={{ display: "flex", width: 15, height: 15 }}><IconMinus /></span>
-                Producto con fricción
+                {t.strip.badLabel}
               </span>
               <ul className="k-compare-list">
-                {[
-                  "El valor se entiende después de una demo o una llamada de ventas",
-                  "El onboarding pide configuración antes de mostrar resultados",
-                  "Cada paso nuevo es una decisión que el usuario no sabía que tenía que tomar",
-                  "El crecimiento depende de cuánta gente puede vender el equipo",
-                ].map((item) => (
-                  <li key={item}>
-                    <span className="k-compare-ico">✕</span>
-                    {item}
-                  </li>
+                {t.strip.badItems.map((item) => (
+                  <li key={item}><span className="k-compare-ico">✕</span>{item}</li>
                 ))}
               </ul>
             </div>
             <div className="k-compare-col is-komerze">
               <span className="k-compare-label">
                 <span style={{ display: "flex", width: 15, height: 15 }}><IconPlus /></span>
-                Producto en flujo — diseño PLG
+                {t.strip.goodLabel}
               </span>
               <ul className="k-compare-list">
-                {[
-                  "El usuario llega al Aha Moment solo, sin que nadie se lo explique",
-                  "La activación ocurre antes de pedir nada a cambio",
-                  "Cada pantalla elimina una decisión en vez de agregar una",
-                  "El crecimiento viene del uso mismo: cada usuario activado trae al siguiente",
-                ].map((item) => (
-                  <li key={item}>
-                    <span className="k-compare-ico">✓</span>
-                    {item}
-                  </li>
+                {t.strip.goodItems.map((item) => (
+                  <li key={item}><span className="k-compare-ico">✓</span>{item}</li>
                 ))}
               </ul>
             </div>
@@ -426,16 +336,14 @@ export default function KomerzeLanding() {
       <section className="k-capabilities" id="capacidades">
         <div className="k-wrap">
           <div className="k-section-head reveal">
-            <h2>De la fricción al flujo.</h2>
-            <p>
-              Aplicamos la misma disciplina a cada compañía que construimos — de entender por qué un producto no se vende solo, a diseñar el flujo que lo hace crecer.
-            </p>
+            <h2>{t.caps.heading}</h2>
+            <p>{t.caps.sub}</p>
           </div>
           <div className="k-cap-grid reveal-group">
-            {CAP_CARDS.map((card) => (
-              <div className="k-cap-card" key={card.num}>
-                <div className="k-cap-num">{card.num}</div>
-                <div className="k-cap-icon">{card.icon}</div>
+            {t.caps.cards.map((card, i) => (
+              <div className="k-cap-card" key={card.title}>
+                <div className="k-cap-num">{String(i + 1).padStart(2, "0")}</div>
+                <div className="k-cap-icon">{CAP_ICONS[i]}</div>
                 <h3>{card.title}</h3>
                 <p>{card.body}</p>
               </div>
@@ -449,16 +357,11 @@ export default function KomerzeLanding() {
         <div className="k-wrap">
           <div className="k-case-top reveal">
             <div>
-              <span className="k-case-kicker">Primera compañía</span>
-              <h2>kardal. es la prueba de que una compañía de producto B2B también puede activarse sola.</h2>
+              <span className="k-case-kicker">{t.case.kicker}</span>
+              <h2>{t.case.heading}</h2>
             </div>
-            <a
-              href="https://kardal.so"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="k-case-link"
-            >
-              Visitar kardal.so <IconExternal />
+            <a href="https://kardal.so" target="_blank" rel="noopener noreferrer" className="k-case-link">
+              {t.case.visitLabel} <IconExternal />
             </a>
           </div>
 
@@ -466,50 +369,26 @@ export default function KomerzeLanding() {
             <div className="k-case-panel-top">
               <div>
                 <div className="k-case-brand">
-                  <span className="k-case-brand-mark">
-                    kardal<span className="k-brand-dot" />
-                  </span>
-                  <span className="k-case-brand-tag">Supplier Intelligence</span>
+                  <span className="k-case-brand-mark">kardal<span className="k-brand-dot" /></span>
+                  <span className="k-case-brand-tag">{t.case.brandTag}</span>
                 </div>
-                <h3>Un flywheel bilateral diseñado para que cada usuario active al siguiente.</h3>
-                <p>
-                  Komerze construye y opera kardal. de extremo a extremo: dos interfaces — Seller Studio y Supplier Intelligence — construidas alrededor de un mismo Aha Moment medible y un flywheel donde comprador y proveedor se invitan mutuamente.
-                </p>
+                <h3>{t.case.panelH3}</h3>
+                <p>{t.case.panelP}</p>
               </div>
               <div className="k-case-stats">
-                <StatCard
-                  countTo={2}
-                  label="Personas de usuario, cada una con su propio flujo de activación"
-                  className="is-amber"
-                  panelVisible={panelVisible}
-                />
-                <StatCard
-                  countTo={1}
-                  label="Aha Moment definido y medido como evento de producto"
-                  className="is-green"
-                  panelVisible={panelVisible}
-                />
-                <StatCard
-                  val="0→1"
-                  label="Desde la estrategia de categoría hasta la compañía operando"
-                  panelVisible={panelVisible}
-                />
-                <StatCard
-                  val="↻"
-                  label="Flywheel inverso: el comprador invita al proveedor y crece la red"
-                  panelVisible={panelVisible}
-                />
+                <StatCard countTo={2}  label={t.case.stats[0].label} className="is-amber" panelVisible={panelVisible} />
+                <StatCard countTo={1}  label={t.case.stats[1].label} className="is-green" panelVisible={panelVisible} />
+                <StatCard val="0→1"   label={t.case.stats[2].label} panelVisible={panelVisible} />
+                <StatCard val="↻"     label={t.case.stats[3].label} panelVisible={panelVisible} />
               </div>
             </div>
             <div className="k-case-panel-bottom">
               <span className="k-case-built">
                 <span style={{ display: "flex", width: 14, height: 14, color: "#666664" }}><IconWrench /></span>
-                Construida y operada por <strong>Komerze Company LLC</strong>
+                {t.case.builtText} <strong>Komerze Company LLC</strong>
               </span>
               <div className="k-case-tags">
-                {["Producto propio", "Estrategia PLG", "Diseño de producto", "Operación continua"].map((tag) => (
-                  <span className="k-case-tag" key={tag}>{tag}</span>
-                ))}
+                {t.case.tags.map((tag) => <span className="k-case-tag" key={tag}>{tag}</span>)}
               </div>
             </div>
           </div>
@@ -520,43 +399,47 @@ export default function KomerzeLanding() {
       <section className="k-process" id="proceso">
         <div className="k-wrap">
           <div className="k-section-head reveal">
-            <h2>Cómo construimos.</h2>
-            <p>
-              Sin intermediarios entre la investigación y el diseño final. El mismo equipo recorre cada compañía de principio a fin.
-            </p>
+            <h2>{t.process.heading}</h2>
+            <p>{t.process.sub}</p>
           </div>
           <div className="k-process-rail">
-            {PROCESS_STEPS.map((step, i) => {
-              const isLast = i === PROCESS_STEPS.length - 1;
+            {t.process.steps.map((step, i) => {
+              const isFirst = i === 0;
+              const isLast  = i === t.process.steps.length - 1;
+              const num     = String(i + 1).padStart(2, "0");
               return (
-                <div key={step.num} className={`k-process-step${step.active ? " is-active" : ""}`}>
-                  {/* Icon + connector row */}
+                <div key={num} className={`k-process-step${isFirst ? " is-active" : ""}`}>
+                  {/* Icon circle + curved dashed connector */}
                   <div className="k-process-node">
-                    <div className="k-process-icon">{step.icon}</div>
+                    <div className="k-process-icon">{PROCESS_ICONS[i]}</div>
                     {!isLast && (
-                      <span className="k-process-flow">
-                        <span className="k-process-flow-track" />
-                        <span className="k-process-flow-fill" />
-                        <svg
-                          className="k-process-flow-tip"
-                          width="8"
-                          height="13"
-                          viewBox="0 0 8 13"
-                          fill="none"
-                        >
-                          <path
-                            d="M1 1.5l5.5 4.75L1 11"
-                            stroke="currentColor"
-                            strokeWidth="1.8"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                          />
-                        </svg>
-                      </span>
+                      <svg
+                        className="k-process-flow"
+                        viewBox="0 0 200 28"
+                        preserveAspectRatio="none"
+                        fill="none"
+                        aria-hidden="true"
+                      >
+                        <path
+                          d="M 0 14 Q 100 5 200 14"
+                          stroke="#D4D4CE"
+                          strokeWidth="1.5"
+                          strokeDasharray="5 5"
+                          strokeLinecap="round"
+                          vectorEffect="non-scaling-stroke"
+                        />
+                        <polyline
+                          points="193,10 200,14 193,18"
+                          stroke="#D4D4CE"
+                          strokeWidth="1.5"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          vectorEffect="non-scaling-stroke"
+                        />
+                      </svg>
                     )}
                   </div>
-                  {/* Text */}
-                  <span className="k-process-step-num">{step.num}</span>
+                  <span className="k-process-step-num">{num}</span>
                   <h4>{step.title}</h4>
                   <p>{step.body}</p>
                 </div>
@@ -570,25 +453,18 @@ export default function KomerzeLanding() {
       <section className="k-cta" id="contacto">
         <div className="k-wrap reveal-group">
           <span className="k-eyebrow" style={{ justifyContent: "center", animation: "none", opacity: 1, transform: "none" }}>
-            Empecemos
+            {t.cta.eyebrow}
           </span>
           <h2>
-            ¿Tu producto necesita que alguien <em>lo explique</em> para que funcione?
+            {t.cta.headingPre}<em>{t.cta.headingEm}</em>{t.cta.headingPost}
           </h2>
-          <p>
-            Cuéntanos cómo se usa tu producto hoy. Te decimos, con honestidad, dónde está la fricción y qué tomaría diseñarla fuera.
-          </p>
+          <p>{t.cta.sub}</p>
           <div className="k-cta-actions">
             <a href="mailto:hola@komerze.co" className="k-btn-primary">
-              Escríbenos a hola@komerze.co <IconMail />
+              {t.cta.ctaMain} <IconMail />
             </a>
-            <a
-              href="https://kardal.so"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="k-btn-secondary"
-            >
-              Explorar kardal. primero
+            <a href="https://kardal.so" target="_blank" rel="noopener noreferrer" className="k-btn-secondary">
+              {t.cta.ctaSecondary}
             </a>
           </div>
         </div>
@@ -599,35 +475,31 @@ export default function KomerzeLanding() {
         <div className="k-wrap">
           <div className="k-footer-top">
             <div className="k-footer-brand">
-              <img src="/images/Komerze-logo.svg" alt="Komerze" />
-              <p>
-                Product Led Company builder para Latinoamérica. Diseñamos, construimos y operamos compañías de producto propias.
-              </p>
+              <img src="/images/Komerze-logo.png" alt="Komerze" />
+              <p>{t.footer.brandText}</p>
             </div>
             <div className="k-footer-cols">
               <div className="k-footer-col">
-                <h5>Compañía</h5>
-                <a href="#que-es">El principio</a>
-                <a href="#capacidades">Capacidades</a>
-                <a href="#proceso">Proceso</a>
+                <h5>{t.footer.col1Title}</h5>
+                {t.footer.col1.map((l) => <a key={l.label} href={l.href}>{l.label}</a>)}
               </div>
               <div className="k-footer-col">
-                <h5>Producto</h5>
-                <a href="https://kardal.so" target="_blank" rel="noopener noreferrer">kardal.</a>
-                <a href="#kardal">Caso de estudio</a>
+                <h5>{t.footer.col2Title}</h5>
+                {t.footer.col2.map((l) => (
+                  <a key={l.label} href={l.href} {...(l.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}>{l.label}</a>
+                ))}
               </div>
               <div className="k-footer-col">
-                <h5>Contacto</h5>
-                <a href="mailto:hola@komerze.co">hola@komerze.co</a>
-                <a href="#contacto">Conversemos</a>
+                <h5>{t.footer.col3Title}</h5>
+                {t.footer.col3.map((l) => <a key={l.label} href={l.href}>{l.label}</a>)}
               </div>
             </div>
           </div>
           <div className="k-footer-bottom">
-            <p>© 2026 Komerze Company LLC. Todos los derechos reservados.</p>
+            <p>{t.footer.copyright}</p>
             <div className="k-footer-legal">
-              <a href="#">Privacidad</a>
-              <a href="#">Términos</a>
+              <a href="#">{t.footer.privacy}</a>
+              <a href="#">{t.footer.terms}</a>
             </div>
           </div>
         </div>
