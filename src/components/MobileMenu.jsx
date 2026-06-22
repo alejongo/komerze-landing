@@ -36,13 +36,16 @@ const MobileMenu = ({ isOpen, setIsOpen }) => {
 
       {/* Mobile menu overlay */}
       {isOpen && (
-        <div className="fixed inset-0 z-40 md:hidden">
-          <div
-            className="fixed inset-0 bg-black opacity-50"
+        <>
+          {/* Background overlay */}
+          <div 
+            className="fixed inset-0 bg-black bg-opacity-50 z-[100]"
             onClick={() => setIsOpen(false)}
           ></div>
-          <div className="fixed top-0 right-0 bottom-0 w-64 bg-white shadow-xl">
-            <div className="p-6">
+          
+          {/* Menu panel */}
+          <div className="fixed top-0 right-0 bottom-0 w-64 bg-white shadow-2xl z-[101] transform transition-transform duration-300 ease-in-out">
+            <div className="p-6 bg-white h-full overflow-y-auto">
               <div className="flex items-center justify-between mb-8">
                 <div className="flex items-center space-x-2">
                   <div className="w-8 h-8 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
@@ -109,7 +112,7 @@ const MobileMenu = ({ isOpen, setIsOpen }) => {
               </nav>
             </div>
           </div>
-        </div>
+        </>
       )}
     </>
   );
