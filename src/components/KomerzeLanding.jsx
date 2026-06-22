@@ -194,7 +194,7 @@ export default function KomerzeLanding() {
       <header className={`k-nav${scrolled ? " is-scrolled" : ""}`}>
         <div className="k-wrap k-nav-inner">
           <a href="/" className="k-nav-logo">
-            <img src="/images/Komerze-logo.png" alt="Komerze" />
+            <img src="/images/Komerze-logo.svg" style={{ height: 30 }} alt="Komerze" />
           </a>
 
           <nav className="k-nav-links">
@@ -222,7 +222,7 @@ export default function KomerzeLanding() {
           <div className="k-mobile-overlay" onClick={() => setMenuOpen(false)} />
           <div className="k-mobile-panel">
             <div className="k-mobile-header">
-              <img src="/images/Komerze-logo.png" alt="Komerze" style={{ height: 20 }} />
+              <img src="/images/Komerze-logo.svg" alt="Komerze" style={{ height: 20 }} />
               <button className="k-mobile-close" onClick={() => setMenuOpen(false)} aria-label={t.nav.ariaClose}>
                 <IconClose />
               </button>
@@ -475,7 +475,7 @@ export default function KomerzeLanding() {
         <div className="k-wrap">
           <div className="k-footer-top">
             <div className="k-footer-brand">
-              <img src="/images/Komerze-logo.png" alt="Komerze" />
+              <img src="/images/Komerze-logo.svg" alt="Komerze" />
               <p>{t.footer.brandText}</p>
             </div>
             <div className="k-footer-cols">
